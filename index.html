@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabor + Saúde — Comida Natural de Verdade</title>
+    <!-- Modern Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Toast Notification -->
+    <div id="toast-cart" class="toast">
+        <span class="toast-icon">✅</span> Produto adicionado ao carrinho!
+    </div>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo" onclick="switchView('home')">
+            <img src="assets/logo.png" class="logo-img" alt="Logo Sabor + Saúde" onerror="this.style.display='none'">
+            <div class="logo-text"><strong>Sabor + Saúde</strong><span>Comida Natural</span></div>
+        </div>
+        <nav>
+            <a id="nav-home" class="active" onclick="switchView('home')">Início</a>
+            <a id="nav-cardapio" onclick="switchView('cardapio')">Cardápio</a>
+            <a id="nav-marmitas" onclick="switchView('marmitas')">Monte sua marmita</a>
+            <a onclick="goToSobre()">Sobre nós</a>
+        </nav>
+        <button class="btn-carrinho" onclick="abrirCarrinho()">
+            🛒 Carrinho <span class="badge" id="badge-count">0</span>
+        </button>
+    </header>
+
+    <!-- VIEW: HOME -->
+    <div id="view-home" class="view active">
+        <!-- HERO -->
+        <div class="hero">
+            <div class="hero-bg"></div>
+            <div class="hero-inner">
+                <div class="hero-content">
+                    <div class="hero-tag"><span></span> Feito com ingredientes naturais</div>
+                    <h1>Comida boa de verdade, <br><em>direto pra sua mesa</em></h1>
+                    <p>Marmitas saudáveis, lasanhas, escondidinho e sucos naturais. Congelado para a semana ou quentinho
+                        agora.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PLATAFORMAS -->
+        <section class="plataformas-section">
+            <div class="section-container text-center">
+                <p class="fs-small mb-2">Faça seu pedido também pelos aplicativos:</p>
+                <div class="plataformas-links">
+                    <a href="https://www.keeta.com.br" target="_blank" class="plat-btn btn-keeta">Keeta</a>
+                    <a href="https://www.ifood.com.br" target="_blank" class="plat-btn btn-ifood">iFood</a>
+                    <a href="https://www.99app.com" target="_blank" class="plat-btn btn-99food">99Food</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESTAQUES -->
+        <section class="destaques-section">
+            <div class="section-container">
+                <div class="section-header text-center">
+                    <div class="section-tag">✨ Destaques</div>
+                    <h2>Nossos pratos favoritos</h2>
+                    <p>Experimente os sucessos da nossa cozinha.</p>
+                </div>
+                <div id="home-pratos-grid" class="pratos-grid">
+                    <!-- JS vai popular com 3 pratos -->
+                </div>
+                <div class="center-btn mt-2">
+                    <button class="btn-primary btn-lg btn-glass" onclick="switchView('cardapio')">Ver cardápio
+                        completo <span style="margin-left: 8px; font-size: 1.2rem;">→</span></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- MINI EXEMPLO MARMITA -->
+        <section class="marmita-teaser">
+            <div class="section-container teaser-flex">
+                <div class="teaser-text">
+                    <div class="section-tag">Personalizado</div>
+                    <h2>Monte do seu jeito</h2>
+                    <p>Escolha exatamente o que vai na sua marmita. Perfeito para dietas ou paladares exigentes.</p>
+                    <ul class="teaser-steps">
+                        <li><strong>1.</strong> Diga quantas marmitas quer.</li>
+                        <li><strong>2.</strong> Escolha as proteínas e a quantidade (ex: Frango 150g).</li>
+                        <li><strong>3.</strong> Adicione carboidratos, legumes e saladas.</li>
+                        <li><strong>4.</strong> Repita receitas ou crie novas!</li>
+                    </ul>
+                    <div class="aviso-whats">
+                        <small>Os valores das marmitas personalizadas serão calculados via WhatsApp após a
+                            finalização do pedido.</small>
+                    </div>
+                    <div class="center-btn mt-2">
+                        <button class="btn-primary btn-lg btn-glass" onclick="switchView('marmitas')">Comece a montar
+                            suas
+                            marmitas!</button>
+                    </div>
+                </div>
+                <div class="teaser-visual">
+                    <div class="mockup-card">
+                        <div class="mockup-header">Marmita Fit #1</div>
+                        <div class="mockup-item">Frango Grelhado - 150g</div>
+                        <div class="mockup-item">Batata Doce - 100g</div>
+                        <div class="mockup-item">Brócolis - 50g</div>
+                        <div class="mockup-item">Salada Crua</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SOBRE NÓS -->
+        <section id="sobre" class="sobre-section">
+            <div class="section-container">
+                <div class="sobre-box">
+                    <div class="sobre-grid">
+                        <div class="sobre-img-wrapper">
+                            <img src="assets/familia.jpeg" class="sobre-img" alt="Nossa Família - Marcelo, Lu e Duda"
+                                onerror="this.style.display='none'">
+                        </div>
+                        <div class="sobre-content">
+                            <div class="section-tag">Nossa História</div>
+                            <h2>Uma cozinha feita com <em>amor e família</em></h2>
+                            <p>O Sabor + Saúde nasceu de um desejo profundo do <strong>Marcelo</strong>, nosso fundador.
+                                Quando sua filha, <strong>Duda</strong>, foi morar com ele, Marcelo quis proporcionar
+                                uma
+                                vida melhor para ela, com mais conforto e presença. A ideia era criar um negócio que
+                                permitisse a ele ficar em casa, aproveitando mais tempo com a filha e com sua esposa,
+                                <strong>Lu</strong>.
+                            </p>
+                            <p>A inspiração para cozinhar sempre esteve ali. Marcelo sempre cozinhou para a esposa e a
+                                filha, carregando as memórias afetivas de sua mãe, <strong>Hilda</strong>, que sempre
+                                preparou refeições com muito amor e sabor incrível. É essa essência que colocamos em
+                                cada
+                                marmita.</p>
+                            <div class="sobre-highlight">
+                                Nossa comida é caseira, feita com ingredientes frescos e, acima de tudo, com
+                                <strong>muito
+                                    amor</strong>.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </div>
+
+    <!-- VIEW: CARDÁPIO -->
+    <div id="view-cardapio" class="view">
+        <div class="section-container">
+            <div class="section-header text-center pt-4">
+                <div class="section-tag">Cardápio</div>
+                <h2>Nosso Cardápio Completo</h2>
+                <p>Clique em qualquer prato para adicionar ao carrinho.</p>
+            </div>
+            <div class="filtros" id="filtros-container">
+                <!-- JS vai popular os filtros baseados em GRUPOS -->
+            </div>
+            <div id="pratos-grid" class="pratos-grid pb-4">
+                <!-- JS vai popular -->
+            </div>
+
+            <div class="cta-marmita">
+                <div class="cta-marmita-content">
+                    <div class="section-tag"
+                        style="background: rgba(224, 169, 109, 0.15); padding: 4px 12px; border-radius: 20px;">
+                        Personalizado</div>
+                    <h3 class="cta-marmita-title">Não encontrou o que procurava?</h3>
+                    <p class="cta-marmita-desc">Monte a sua própria marmita escolhendo cada ingrediente e a quantidade
+                        exata. Perfeito para o seu gosto e dieta!</p>
+                </div>
+                <div class="cta-marmita-action">
+                    <button class="btn-primary btn-lg btn-glass" onclick="switchView('marmitas')">Monte a sua marmita
+                        agora</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VIEW: MARMITAS -->
+    <div id="view-marmitas" class="view">
+        <div class="section-container pt-4 pb-4">
+
+            <!-- STEP 1: QUANTIDADE DE MARMITAS -->
+            <div id="builder-step-1" class="builder-container text-center">
+                <div class="section-tag">Passo 1</div>
+                <h2>Quantas marmitas você quer montar?</h2>
+                <p>Defina o número total. Você poderá personalizar cada uma delas ou repetir receitas.</p>
+
+                <div class="qtd-selector-large">
+                    <div class="qtd-controls">
+                        <button class="btn-qtd" onclick="ajustarMarmitas(-1)">-</button>
+                        <input type="number" id="total-marmitas-input" value="5" min="1" max="100" readonly>
+                        <button class="btn-qtd" onclick="ajustarMarmitas(1)">+</button>
+                    </div>
+                    <span>marmitas no total</span>
+                </div>
+
+                <div class="aviso-whats-center mt-2 mb-2">
+                    Os valores das marmitas personalizadas serão calculados via WhatsApp após a finalização do pedido.
+                </div>
+
+                <button class="btn-primary btn-lg mt-2 btn-glass" onclick="startBuilder()">Iniciar Montagem</button>
+            </div>
+
+            <!-- STEP 2: BUILDER -->
+            <div id="builder-step-2" class="builder-container" style="display:none;">
+                <div class="builder-header">
+                    <div>
+                        <h2 id="builder-title">Montando Marmita 1</h2>
+                        <div class="builder-progress">Marmita <span id="current-m-display">1</span> de <span
+                                id="total-m-display">5</span></div>
+                    </div>
+                    <div class="builder-actions">
+                        <button class="btn-danger btn-sm" onclick="excluirMarmitaAtual()">Excluir esta
+                            marmita</button>
+                    </div>
+                </div>
+
+                <div class="builder-replication">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <span style="font-weight: 600;">Fazer mais marmitas iguais a esta?</span>
+                        <label class="switch">
+                            <input type="checkbox" id="check-replicar" onchange="toggleReplicar()">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div id="replicar-controls" style="display:none;" class="mt-1">
+                        <span class="fs-small">Quantas marmitas EXTRAS iguais a esta você quer?</span>
+                        <div class="replicar-input-group" style="margin-top: 10px;">
+                            <input type="number" id="input-replicar-qtd" min="1" class="input-sm"
+                                oninput="checkReplicarMax()">
+                            <span id="replicar-max-msg" class="fs-small"
+                                style="color:var(--text-muted); margin-left:10px;"></span>
+                        </div>
+                        <div id="replicar-extra-btn"
+                            style="display:none; margin-top:15px; padding: 10px; border: 1px dashed #c62828; border-radius: 8px; background: #fff5f5;">
+                            <span
+                                style="color:#c62828; font-size:0.95rem; display:block; margin-bottom:8px; font-weight: 600;">Você
+                                atingiu o limite de marmitas do seu pedido.</span>
+                            <button class="btn-outline btn-sm" onclick="adicionarMarmitaAoTotal()">+ Adicionar mais 1
+                                marmita ao pedido</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="builder-form">
+                    <!-- Proteína -->
+                    <div class="form-section">
+                        <h3>Proteína</h3>
+                        <p class="fs-small">Selecione ou escreva. Obrigatório informar a quantidade se adicionar.</p>
+                        <div class="ing-options" id="opt-proteina">
+                            <span class="ing-chip" onclick="selectIng('proteina', 'Frango Grelhado')">Frango
+                                Grelhado</span>
+                            <span class="ing-chip" onclick="selectIng('proteina', 'Carne Moída')">Carne Moída</span>
+                            <span class="ing-chip" onclick="selectIng('proteina', 'Patinho em tiras')">Patinho</span>
+                            <span class="ing-chip" onclick="selectIng('proteina', 'Tilápia')">Tilápia</span>
+                        </div>
+                        <div id="lista-proteina" class="ing-list mt-1"></div>
+                        <button id="btn-add-proteina" class="btn-outline btn-sm mt-1" style="display:none;"
+                            onclick="addIngRow('proteina')">+ Adicionar proteína</button>
+                    </div>
+
+                    <!-- Carboidrato -->
+                    <div class="form-section">
+                        <h3>Carboidrato</h3>
+                        <div class="ing-options" id="opt-carbo">
+                            <span class="ing-chip" onclick="selectIng('carbo', 'Arroz Integral')">Arroz Integral</span>
+                            <span class="ing-chip" onclick="selectIng('carbo', 'Batata Doce')">Batata Doce</span>
+                            <span class="ing-chip" onclick="selectIng('carbo', 'Mandioquinha')">Mandioquinha</span>
+                            <span class="ing-chip" onclick="selectIng('carbo', 'Macarrão Integral')">Macarrão
+                                Int.</span>
+                        </div>
+                        <div id="lista-carbo" class="ing-list mt-1"></div>
+                        <button id="btn-add-carbo" class="btn-outline btn-sm mt-1" style="display:none;"
+                            onclick="addIngRow('carbo')">+ Adicionar carboidrato</button>
+                    </div>
+
+                    <!-- Legumes -->
+                    <div class="form-section">
+                        <h3>Legumes</h3>
+                        <div class="ing-options" id="opt-legumes">
+                            <span class="ing-chip" onclick="selectIng('legumes', 'Brócolis')">Brócolis</span>
+                            <span class="ing-chip" onclick="selectIng('legumes', 'Cenoura')">Cenoura</span>
+                            <span class="ing-chip" onclick="selectIng('legumes', 'Abobrinha')">Abobrinha</span>
+                            <span class="ing-chip" onclick="selectIng('legumes', 'Mix de Legumes')">Mix Legumes</span>
+                        </div>
+                        <div id="lista-legumes" class="ing-list mt-1"></div>
+                        <button id="btn-add-legumes" class="btn-outline btn-sm mt-1" style="display:none;"
+                            onclick="addIngRow('legumes')">+ Adicionar legumes</button>
+                    </div>
+
+                    <!-- Saladas/Folhas -->
+                    <div class="form-section">
+                        <h3>Saladas / Folhas</h3>
+                        <div class="ing-options" id="opt-saladas">
+                            <span class="ing-chip" onclick="selectIng('saladas', 'Alface')">Alface</span>
+                            <span class="ing-chip" onclick="selectIng('saladas', 'Rúcula')">Rúcula</span>
+                            <span class="ing-chip" onclick="selectIng('saladas', 'Tomate')">Tomate</span>
+                            <span class="ing-chip" onclick="selectIng('saladas', 'Mix de Folhas')">Mix de Folhas</span>
+                        </div>
+                        <div id="lista-saladas" class="ing-list mt-1"></div>
+                        <button id="btn-add-saladas" class="btn-outline btn-sm mt-1" style="display:none;"
+                            onclick="addIngRow('saladas')">+ Adicionar salada</button>
+                    </div>
+
+                    <!-- Observações -->
+                    <div class="form-section">
+                        <h3>Observações para esta marmita</h3>
+                        <textarea id="obs-marmita" placeholder="Ex: Pouco sal, sem cebola, etc..."></textarea>
+                    </div>
+
+                    <div id="builder-error" class="error-msg" style="display:none;"></div>
+
+                </div>
+
+                <div class="builder-footer">
+                    <button class="btn-outline" onclick="prevMarmita()" id="btn-prev-marmita">← Anterior</button>
+                    <button class="btn-primary" onclick="nextMarmita()" id="btn-next-marmita">Próxima →</button>
+                </div>
+            </div>
+
+            <!-- STEP 3: FINISHED -->
+            <div id="builder-step-3" class="builder-container split-layout" style="display:none;">
+                <div class="finished-visual">
+                    <img src="assets/food.jpg" alt="Sucesso">
+                    <div class="visual-overlay"></div>
+                </div>
+                <div class="finished-content">
+                    <div class="success-icon-wrapper">
+                        <div class="success-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="section-tag">Tudo Pronto!</div>
+                    <h2>Marmitas finalizadas com sucesso</h2>
+                    <p>Agora é só conferir seu carrinho e enviar o pedido pelo WhatsApp.</p>
+                    
+                    <div class="finished-actions">
+                        <button class="btn-primary btn-lg btn-block btn-pulse" onclick="abrirCarrinho()">
+                            🛒 Ir para o Carrinho
+                        </button>
+                        
+                        <div class="secondary-actions">
+                            <button class="btn-outline btn-sm"
+                                onclick="switchView('marmitas'); document.getElementById('builder-step-3').style.display='none'; document.getElementById('builder-step-1').style.display='block';">
+                                ➕ Criar mais
+                            </button>
+                            <button class="btn-outline btn-sm" onclick="switchView('cardapio')">
+                                🍽️ Ver cardápio
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <img src="assets/logo.png" alt="Sabor + Saúde" onerror="this.style.display='none'">
+                    <strong>Sabor + Saúde</strong>
+                </div>
+                <p>Comida caseira feita com amor para você e sua família. Sinta o sabor de uma refeição saudável e
+                    natural em cada mordida.</p>
+            </div>
+            <div class="footer-links-group">
+                <div class="footer-links">
+                    <h4>Navegação</h4>
+                    <a onclick="switchView('home'); window.scrollTo({top: 0, behavior: 'smooth'});">Início</a>
+                    <a onclick="switchView('cardapio'); window.scrollTo({top: 0, behavior: 'smooth'});">Cardápio</a>
+                    <a onclick="switchView('marmitas'); window.scrollTo({top: 0, behavior: 'smooth'});">Marmitas</a>
+                    <a onclick="goToSobre()">Sobre Nós</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Contato & Redes</h4>
+                    <a href="https://wa.me/5511999999999" target="_blank">📞 (11) 99999-9999</a>
+                    <a href="https://www.ifood.com.br" target="_blank">🍔 Peça pelo iFood</a>
+                    <a href="#" target="_blank">📷 Instagram</a>
+                    <a href="#" target="_blank">👍 Facebook</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Horários</h4>
+                    <p class="footer-text">Seg - Sex: 10h às 22h</p>
+                    <p class="footer-text">Sáb - Dom: 11h às 16h</p>
+                    <p class="footer-text mt-1" style="font-size: 0.9rem; color: var(--accent);"><em>* Delivery
+                            disponível em todo o horário de funcionamento.</em></p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Sabor + Saúde — Todos os direitos reservados</p>
+            <p class="footer-dev">Feito com 💚 para alimentar bem.</p>
+        </div>
+    </footer>
+
+    <!-- MODAL CARRINHO -->
+    <div class="modal-overlay" id="modal-carrinho" onclick="fecharAoClicarFora(event)">
+        <div class="modal-carrinho">
+            <div class="modal-header">
+                <h2>Seu pedido (🛒)</h2>
+                <button class="btn-fechar" onclick="fecharCarrinho()">✕</button>
+            </div>
+
+            <div id="lista-carrinho" class="lista-carrinho">
+                <!-- Itens -->
+            </div>
+
+            <div class="opcoes-fin" id="opcoes-fin" style="display:none">
+                <div class="talheres-row mb-1">
+                    <label class="checkbox-label" style="justify-content: flex-start;">
+                        <input type="checkbox" id="check-talheres">
+                        Desejo que enviem talheres
+                    </label>
+                </div>
+
+                <span class="obs-carr-lbl">Observações gerais do pedido</span>
+                <textarea class="obs-carr-ta" id="carrinho-obs" placeholder="Ex: Entregar na portaria..."></textarea>
+
+                <div class="total-row">
+                    <span>Subtotal Menu</span>
+                    <strong id="total-valor">R$ 0,00</strong>
+                </div>
+                <div class="total-nota" id="total-nota" style="display:none; color: var(--green-dark);">
+                    * Você possui marmitas personalizadas. O valor delas será adicionado via WhatsApp.
+                </div>
+
+                <button class="btn-whatsapp mt-2" onclick="finalizarPedido()">
+                    Finalizar pedido via WhatsApp
+                </button>
+            </div>
+            <div id="carrinho-vazio" class="text-center mt-2" style="display:none;">
+                Seu carrinho está vazio.
+            </div>
+        </div>
+    </div>
+
+    <!-- Detalhe do prato (para o cardápio padrão) -->
+    <div class="det-overlay" id="det-overlay" onclick="fecharDetalheAoClicar(event)">
+        <div class="det-box" id="det-box">
+            <button class="det-fechar" onclick="fecharDetalhe()">✕</button>
+            <div class="det-body">
+                <h2 id="det-nome"></h2>
+                <p class="det-desc" id="det-desc"></p>
+                <div class="det-preco" id="det-preco"></div>
+
+                <div id="det-opcoes-dinamicas" class="mt-2"></div>
+
+                <label class="det-obs-label mt-2">Observação (opcional)</label>
+                <textarea class="det-obs-ta" id="det-obs" placeholder="Ex: sem cebola..."></textarea>
+
+                <button class="btn-primary mt-2" style="width: 100%;" onclick="addDoDetalhe()">+ Adicionar ao
+                    carrinho</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
